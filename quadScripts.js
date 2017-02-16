@@ -87,7 +87,9 @@ function results() {
 
   $("#vertex").text("Vertex is at (" + vX+","+vY+")");
   $("#vertexForm").text("Vertex Form is y = "+a+"(x-"+vX+")^2 + "+vY);
-}  // close results()
+  $("#yInt").text("The y-Intercept is at (0,"+c+")");
+}  
+// close results()
 
 function solutions() {
 // qudratic formula
@@ -107,8 +109,8 @@ x2 = (1*b+d**.5)/(2*a)
 x1 = x1.toFixed(3)
 x2 = x2.toFixed(3)
 
-$("#solution1").text("x = " + x1);
-$("#solution2").text("x = " + x2);
+$("#solution1").text("x-Intercept #1 = " + x1);
+$("#solution2").text("x-Intercept #2 = " + x2);
 
 context.beginPath();
   context.arc(w/2+x1*k,h/2,5,0,6.28);
@@ -118,6 +120,9 @@ context.beginPath();
   context.arc(w/2-x2*k,h/2,5,0,6.28);
   context.fill();
 
+  context.beginPath();
+  context.arc(w/2,h/2-c*k,5,0,6.28);
+  context.fill();
 }
 
 }
@@ -147,8 +152,10 @@ function zoomIn() {
 
 function zoomOut() {
 
+    if (k>5){
     k = k - 2;
     resetCanvas();
+  }
 }  // end zoomOut
 
 function zoomInbig() {
@@ -158,9 +165,10 @@ function zoomInbig() {
 }  // end zoomIN
 
 function zoomOutbig() {
-
+    if (k>5){
     k = k - 10;
     resetCanvas();
+  }
 }  // end zoomOut
 
 function resetCanvas() {

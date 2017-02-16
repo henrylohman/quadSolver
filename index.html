@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Quad Grapher/Solver</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-responsive.css">
+    <!-- This is an internal style block of code to override some of the bootstrap style values-->
+  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <!-- styles to override bootstrap settings or add our own styles -->
+  
+<script type="text/javascript" src="quadScripts.js"></script>
+  <style>
+    /* Set gray background color and 100% height */
+    .sidenav {
+      height: 100%;
+    }
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+        min-width: 180px;
+      }
+
+      .btn {
+        width: 80%;
+        min-width: ;
+      }
+      .row.content {height:auto;} 
+    }
+    .coeff {
+      width: 70%;
+      background-color: #7D9ED3;
+      padding: 10px;
+      border-radius: 15px;
+      border-style: solid;
+      border-width: 2px;
+      min-width: 150px;
+      max-width: 250;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+    canvas {
+      display: block;
+      border-style: solid;
+      border-width: 2px;
+      background-color: lightgrey;
+      margin-top: 5px;
+      border-radius: 15px;
+      min-width: 300px;
+      min-height: 300px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 90%;
+    }
+
+    .navbar .nav > li > a {
+            color: #7D9ED3; /*nav color*/
+            text-shadow: none;
+        }
+        .navbar .nav > li > a:hover {
+            color:white;
+            background: #A2A2A2;
+        }
+        .myclass {
+            color: #7D9ED3;
+            background-color:  #99ffcc;
+          }
+
+        
+        #answers {
+        
+      width: 70%;
+      background-color: #7D9ED3;
+      padding: 10px;
+      border-radius: 15px;
+      border-style: solid;
+      border-width: 2px;
+      min-width: 150px;
+      max-width: 300px;
+      min-height: 107px;
+      max-height: 150px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+
+        }
+
+       #answertitle {
+        text-align: center;
+       }
+
+       h3 {
+        text-align:center;
+       }
+
+       #zoomcontrolsmall {
+        width: 70%;
+      background-color: lightgrey;
+      padding: 10px;
+      border-radius: 15px;
+      border-style: solid;
+      border-width: 2px;
+      min-width: 150px;
+      max-width: 300px;
+      min-height: 50px;
+      max-height: 150px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      margin-top: 25px;
+       }
+
+        #zoomcontrolbig {
+        width: 70%;
+      background-color: lightgrey;
+      padding: 10px;
+      border-radius: 15px;
+      border-style: solid;
+      border-width: 2px;
+      min-width: 150px;
+      max-width: 300px;
+      min-height: 50px;
+      max-height: 150px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      margin-top: 10px;
+       }
+
+  </style>
+
+<!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  </head>
+  <body onLoad="init()">
+   <!--  Nav bar that is responsive (container-fluid with data-toggle at collapse) -->
+   <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="#">Math Solutions</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Linear Grapher</a></li>
+          <li><a href="#2">Quadratic Grapher</a></li>
+          <li><a href="#3">Cubic Grapher</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!--    our main body of divs that are responsive (go from in-line to block when screen is small) -->
+  
+  <div class="container-fluid">    
+    <div class="row content">
+      <div class="col-sm-4 sidenav">
+        <h3>Coefficients Below</h3>
+        <div class="coeff">
+          <p class="formInfo">Enter Values<br>
+
+            a = <input size="5" type="text" id="quadA" value="1"> <br>
+            b = <input size="5" type="text" id="linB" value="0"> <br>
+            c = <input size="5" type="text" id="constant" value="0"> <br>
+          </p>
+          <button class="btn btn-default" onclick="QF()">Submit Values</button>
+        </div>
+
+        <p id="answertitle">
+          <h3>Answers/Solutions:</h3>
+        </p>
+
+        <div id="answers">
+            <p id="vertex"></p>
+            <p id="solution1"></p>
+            <p id="solution2"></p>
+
+        </div>
+        <p id="zoomcontrolsmall">Zoom Small:
+        
+        <button type="button" class="btn btn-danger btn-sm" onclick="zoomOut()">
+          <span class="glyphicon glyphicon-minus"></span> Out
+        </button>
+
+        <button type="button" class="btn btn-primary  btn-sm" onclick="zoomIn()">
+          <span class="glyphicon glyphicon-plus"></span> In
+        </button>
+
+      </p>
+        
+
+      <p id="zoomcontrolbig">Zoom Big:
+        <button type="button" class="btn btn-danger btn-sm" onclick="zoomOutbig()">
+          <span class="glyphicon glyphicon-minus"></span> Big Out
+        </button>
+
+        <button type="button" class="btn btn-primary  btn-sm" onclick="zoomInbig()">
+          <span class="glyphicon glyphicon-plus"></span> Big In
+        </button>
+       </p>  
+
+      </div>
+      <div class="col-sm-8"> 
+        <canvas class="canvasGrids" id="mycanvas"></canvas>
+      </div>
+    </div>
+  </div>
+  
+  </body>
+</html>

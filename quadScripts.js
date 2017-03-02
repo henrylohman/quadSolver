@@ -88,6 +88,15 @@ function results() {
   $("#vertex").text("Vertex is at (" + vX+","+vY+")");
   $("#vertexForm").text("Vertex Form is y = "+a+"(x-"+vX+")^2 + "+vY);
   $("#yInt").text("The y-Intercept is at (0,"+c+")");
+
+context.setLineDash([5,10]);
+  context.beginPath();
+  context.moveTo(w/2+vX*k, 5);
+  context.lineTo(w/2+vX*k, h-5);
+  context.stroke();
+  context.setLineDash([0]);
+  
+
 }  
 // close results()
 
@@ -165,7 +174,7 @@ function zoomInbig() {
 }  // end zoomIN
 
 function zoomOutbig() {
-    if (k>5){
+    if (k>15){
     k = k - 10;
     resetCanvas();
   }

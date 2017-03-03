@@ -95,6 +95,10 @@ context.setLineDash([5,10]);
   context.lineTo(w/2+vX*k, h-5);
   context.stroke();
   context.setLineDash([0]);
+
+  context.beginPath();
+  context.arc(w/2,h/2-c*k,5,0,6.28);
+  context.fill();
   
 
 }  
@@ -129,9 +133,7 @@ context.beginPath();
   context.arc(w/2-x2*k,h/2,5,0,6.28);
   context.fill();
 
-  context.beginPath();
-  context.arc(w/2,h/2-c*k,5,0,6.28);
-  context.fill();
+  
 }
 
 }
